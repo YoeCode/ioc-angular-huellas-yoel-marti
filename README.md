@@ -1,59 +1,67 @@
-# IocAngularHuellasYoelMarti
+# Huellas
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.1.
+## Autor
 
-## Development server
+Yoel Martí Solé.
 
-To start a local development server, run:
+## Descripció
+
+Aplicació que facilita l’adopció d’animals mitjançant un catàleg
+amb fitxes informatives, filtres de cerca i un formulari d’interès
+en l’adopció.
+
+Aquestes funcionalitats s’implementaran progressivament durant
+el semestre. Actualment, el projecte disposa d’una pantalla
+inicial de presentació.
+
+## Versions utilitzades
+
+- Node.js: v25.2.1
+- npm: 11.6.2
+- Angular CLI: 22.2.1
+- Angular: 22.2.1
+- Git: git version 2.50.1 (Apple Git-155)
+
+## Com crear i executar el projecte
+
+Comanda utilitzada per crear el projecte:
+
+```bash
+ng new ioc-angular-huellas-yoel-marti --routing --style=scss --ssr=false --standalone --file-name-style-guide=2016 --skip-git --package-manager=npm
+```
+
+Per descarregar l’estat de l’EAC1 i instal·lar les dependències:
+
+```bash
+git clone --branch ra1-setup https://github.com/YoeCode/ioc-angular-huellas-yoel-marti.git
+cd ioc-angular-huellas-yoel-marti
+npm install
+```
+
+Per executar l’aplicació:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Obriu http://localhost:4200 al navegador.
 
-## Code scaffolding
+## Estat de l’EAC1
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Entorn de desenvolupament verificat.
+- Projecte standalone amb routing, SCSS i sense SSR.
+- Carpetes components, services, models i pages amb .gitkeep.
+- Branques main, ra1-setup, ra2-components, ra3-serveis i ra4-navegacio.
+- Pantalla inicial personalitzada amb interpolació i layout flex.
+- Execució i actualització automàtica del navegador comprovades.
 
-```bash
-ng generate component component-name
-```
+La branca ra1-setup conté els canvis de l’EAC1.
+Les branques main, ra2-components, ra3-serveis i ra4-navegacio
+conserven el projecte base.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Enllaç del repositori
 
-```bash
-ng generate --help
-```
+https://github.com/YoeCode/ioc-angular-huellas-yoel-marti
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Branca de l’EAC1:
+https://github.com/YoeCode/ioc-angular-huellas-yoel-marti/tree/ra1-setup
