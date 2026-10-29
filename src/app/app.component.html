@@ -1,32 +1,28 @@
-<main class="container">
-  <header>
-    <h1>{{ appName }}</h1>
-
-    <p>
-      Projecte de Yoel Martí Solé per facilitar l’adopció
-      d’animals i ajudar-los a trobar una llar.
-    </p>
-  </header>
-
-  <div class="content">
-    <section class="project-card" aria-labelledby="project-title">
-      <h2 id="project-title">Dades del projecte</h2>
-
-      <p><strong>Aplicació:</strong> {{ appName }}</p>
-      <p><strong>Autor:</strong> Yoel Martí Solé</p>
-      <p><strong>Temàtica:</strong> Adopció d’animals</p>
-      <p><strong>Tecnologia:</strong> Angular amb SCSS</p>
-
-      <p class="status">Projecte base llest</p>
-    </section>
-
-    <aside>
-      <h2>Una nova oportunitat</h2>
-      <p>
-        Cada animal mereix una llar. Huellas creix per ajudar-los
-  a trobar una família.
-      </p>
-    </aside>
-  </div>
-</main>
-<router-outlet/>
+<a class="skip-link" href="#contingut">Salta al contingut principal</a>
+<div class="container">
+  <header><p class="eyebrow">ADOPTA · ESTIMA · CUIDA</p><h1>{{ appName }}</h1><p class="intro">Una nova oportunitat comença amb una llar.</p><p>Coneix els animals que esperen una família i troba el teu company.</p></header>
+  <main id="contingut" tabindex="-1">
+    <h2 class="sr-only">Animals en adopció</h2>
+    <app-filtres-animals (aplicarFiltres)="aplicaFiltres($event)" />
+    <p class="resultats" role="status" aria-live="polite" aria-atomic="true">{{ animalsVisibles.length }} {{ animalsVisibles.length === 1 ? 'resultat' : 'resultats' }} @if (filtresActius.text) { per «{{ filtresActius.text }}» } @if (filtresActius.categoria) { · {{ filtresActius.categoria }} }</p>
+    <div class="layout">
+      <section aria-label="Llistat d’animals">
+        @if (animalsVisibles.length > 0) {
+          <app-llista-animals [animals]="animalsVisibles" [seleccionatId]="animalSeleccionat?.id ?? null" (seleccionar)="selecciona($event)" />
+        } @else { <div class="buit"><h2>No hi ha resultats</h2><p>No hem trobat cap animal amb aquests filtres. Prova un altre nom o prem Restableix.</p></div> }
+      </section>
+      <aside class="detall" aria-labelledby="titol-detall" aria-live="polite">
+        <p class="eyebrow">CONEIX EL TEU COMPANY</p>
+        <h2 id="titol-detall">Detall de l’animal</h2>
+        @if (animalSeleccionat) {
+          <app-etiqueta-especie [categoria]="animalSeleccionat.categoria" />
+          <h3>{{ animalSeleccionat.nom }}</h3><p>{{ animalSeleccionat.descripcio }}</p>
+          <dl><dt>Edat</dt><dd>{{ animalSeleccionat.edat }} @if (animalSeleccionat.edat === 1) { any } @else { anys }</dd><dt>Data d’arribada</dt><dd>{{ animalSeleccionat.dataArribada | date:'dd/MM/yyyy' }}</dd></dl>
+          @if (animalSeleccionat.destacat) { <p class="destacat">Adopció destacada: ajuda’ns a trobar-li una família.</p> }
+          <p class="nota">Dades de demostració per al projecte educatiu. No és un servei real d’adopcions.</p>
+        } @else { <p>Selecciona un animal del llistat per descobrir la seva història.</p> }
+      </aside>
+    </div>
+  </main>
+  <footer>Huellas · Yoel Martí Solé · Projecte Angular · EAC2</footer>
+</div>

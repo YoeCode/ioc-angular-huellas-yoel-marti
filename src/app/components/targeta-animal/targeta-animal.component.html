@@ -1,0 +1,7 @@
+<button type="button" class="targeta" [class.seleccionada]="seleccionat" [attr.aria-pressed]="seleccionat" [attr.aria-label]="'Veure detall de ' + animal.nom" (click)="seleccionar.emit(animal)">
+  <span class="capcalera"><app-etiqueta-especie [categoria]="animal.categoria" />@if (animal.destacat) { <span class="destacat">Adopció destacada</span> }</span>
+  <span class="nom">{{ animal.nom }}</span>
+  <span class="edat">{{ animal.edat }} @if (animal.edat === 1) { any } @else { anys }</span>
+  <span class="descripcio">{{ animal.descripcio }}</span>
+  <span class="accio">@if (seleccionat) { Seleccionat ✓ } @else { Coneix-me → }</span>
+</button>

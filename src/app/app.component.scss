@@ -1,61 +1,20 @@
-:host {
-  display: block;
-  min-height: 100vh;
-  background-color: #f4f7f5;
-  color: #243b30;
-  font-family: Arial, sans-serif;
-}
-
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 40px 24px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-h1 {
-  margin: 0 0 16px;
-  color: #226344;
-  font-size: 48px;
-}
-
-h2 {
-  margin-top: 0;
-  font-size: 22px;
-}
-
-p {
-  line-height: 1.6;
-}
-
-.content {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 24px;
-}
-
-.project-card {
-  flex: 2 1 320px;
-  padding: 24px;
-  background-color: white;
-  border: 1px solid #d5e2da;
-  border-radius: 12px;
-}
-
-.status {
-  padding: 12px;
-  background-color: #e2f3e8;
-  border-radius: 6px;
-  font-weight: bold;
-}
-
-aside {
-  flex: 1 1 220px;
-  padding: 24px;
-  background-color: #fff3da;
-  border-radius: 12px;
-}
+:host { display: block; min-height: 100vh; background: #f4f7f5; color: #243b30; }
+.container { max-width: 1200px; margin: auto; padding: 2.5rem 1.5rem; }
+header { margin-bottom: 2rem; }
+h1 { font-size: clamp(2.8rem, 8vw, 4rem); line-height: 1.1; color: #226344; margin: .6rem 0; }
+p { line-height: 1.6; }
+.eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .12em; color: #526258; }
+.intro { font-size: 1.35rem; margin: .6rem 0; }
+.resultats { font-weight: 700; margin: 1.5rem 0; }
+.layout { display: grid; grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr); gap: 1.5rem; align-items: start; }
+.layout > * { min-width: 0; }
+.detall, .buit { padding: 1.5rem; border-radius: .8rem; border: 1px solid #dfd2af; background: #fff7e5; }
+.detall h2 { font-size: 1.25rem; margin: .7rem 0 1rem; }
+.detall h3 { font-size: 1.8rem; margin: 1rem 0; }
+dl { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; } dt { font-weight: 700; } dd { margin: 0; }
+.nota { border-top: 1px solid #dfd2af; padding-top: 1rem; font-size: .8rem; }
+.destacat { font-weight: 700; }
+footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #c5d3c9; font-size: .85rem; }
+.skip-link { position: absolute; left: 1rem; top: -100px; padding: 1rem; background: #fff; color: #16482f; z-index: 10; }
+.skip-link:focus { top: 1rem; }
+@media (max-width: 700px) { .container { padding: 1.5rem 1rem; } .layout { grid-template-columns: 1fr; } }

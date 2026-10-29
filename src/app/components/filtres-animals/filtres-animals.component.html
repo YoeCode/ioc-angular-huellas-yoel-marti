@@ -1,0 +1,20 @@
+<form #formFiltres="ngForm" (ngSubmit)="aplica(formFiltres)" aria-label="Filtres d’adopció">
+  <div class="camp cerca">
+    <label for="cerca">Cerca pel nom</label>
+    <input id="cerca" name="text" type="search" [(ngModel)]="text" required minlength="3" #textCtrl="ngModel" aria-describedby="ajuda-cerca error-cerca" [attr.aria-invalid]="textCtrl.touched && (textCtrl.invalid || text.trim().length < 3) ? 'true' : null" placeholder="Per exemple, Luna">
+    <small id="ajuda-cerca">Escriu almenys 3 caràcters i prem Aplica.</small>
+  </div>
+  <div class="camp">
+    <label for="categoria">Espècie</label>
+    <select id="categoria" name="categoria" [(ngModel)]="categoria">
+      <option value="">Totes les espècies</option><option value="Gos">Gos</option><option value="Gat">Gat</option><option value="Conill">Conill</option>
+    </select>
+  </div>
+  <div class="accions">
+    <button type="submit" [disabled]="formFiltres.invalid || text.trim().length < 3">Aplica</button>
+    <button type="button" class="secundari" (click)="restableix(formFiltres)">Restableix</button>
+  </div>
+  <div id="error-cerca" class="error" role="alert">
+    @if (textCtrl.touched && (textCtrl.invalid || text.trim().length < 3)) { Escriu 3 caràcters com a mínim. }
+  </div>
+</form>

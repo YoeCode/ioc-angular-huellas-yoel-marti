@@ -1,67 +1,70 @@
-# Huellas
+# Huellas · Animals en adopció
 
-## Autor
+Projecte educatiu de **Yoel Martí Solé** per a DA2_OA01, EAC2 (RA2).
+Continua la base de l’EAC1: una interfície per conèixer animals que busquen una llar.
+Les dades són fictícies; no és un servei real d’adopcions.
 
-Yoel Martí Solé.
+## Entorn
+- Node.js 24.22.0 LTS (requisit: 24.15.0 o superior de la branca 24).
+- npm: consulteu `npm --version` amb Node 24.
+- Angular / Angular CLI 22.x, TypeScript 6.0.x; versions exactes al lockfile.
+- Git 2.x; components standalone, SCSS i sense SSR.
 
-## Descripció
-
-Aplicació que facilita l’adopció d’animals mitjançant un catàleg
-amb fitxes informatives, filtres de cerca i un formulari d’interès
-en l’adopció.
-
-Aquestes funcionalitats s’implementaran progressivament durant
-el semestre. Actualment, el projecte disposa d’una pantalla
-inicial de presentació.
-
-## Versions utilitzades
-
-- Node.js: v25.2.1
-- npm: 11.6.2
-- Angular CLI: 22.2.1
-- Angular: 22.2.1
-- Git: git version 2.50.1 (Apple Git-155)
-
-## Com crear i executar el projecte
-
-Comanda utilitzada per crear el projecte:
-
+## Instal·lació i execució
 ```bash
-ng new ioc-angular-huellas-yoel-marti --routing --style=scss --ssr=false --standalone --file-name-style-guide=2016 --skip-git --package-manager=npm
-```
-
-Per descarregar l’estat de l’EAC1 i instal·lar les dependències:
-
-```bash
-git clone --branch ra1-setup https://github.com/YoeCode/ioc-angular-huellas-yoel-marti.git
-cd ioc-angular-huellas-yoel-marti
 npm install
+npx ng serve
 ```
-
-Per executar l’aplicació:
-
+Obriu http://localhost:4200. També podeu usar `ng serve` amb el CLI 22 al PATH.
 ```bash
-ng serve
+npx ng test --watch=false
+npx ng build
 ```
+`ng test` inicia les proves; `--watch=false` permet executar-les una sola vegada.
 
-Obriu http://localhost:4200 al navegador.
+## Branca i historial
+Branca de treball i lliurament: **ra2-components**.
+S’hi ha incorporat `ra1-setup` (commit de l’EAC1: `4d43239`) abans dels canvis.
+```bash
+git switch ra2-components
+git merge ra1-setup
+git log --oneline --decorate --max-count=5
+```
+Publicació dels canvis revisats:
+```bash
+git add src README.md
+git commit -m "feat(ra2): completar animals, filtres i detall accessibles"
+git push -u origin ra2-components
+```
+Repositori: https://github.com/YoeCode/ioc-angular-huellas-yoel-marti
+Branca: https://github.com/YoeCode/ioc-angular-huellas-yoel-marti/tree/ra2-components
 
-## Estat de l’EAC1
+## Model i dades
+`src/app/models/animal.model.ts`: `Animal` amb id, nom, descripcio, categoria
+(unió Gos/Gat/Conill), dataArribada ISO, edat numèrica i destacat booleà opcional.
+`src/app/mocks/animals.mock.ts`: 10 animals tipats amb identificadors únics.
 
-- Entorn de desenvolupament verificat.
-- Projecte standalone amb routing, SCSS i sense SSR.
-- Carpetes components, services, models i pages amb .gitkeep.
-- Branques main, ra1-setup, ra2-components, ra3-serveis i ra4-navegacio.
-- Pantalla inicial personalitzada amb interpolació i layout flex.
-- Execució i actualització automàtica del navegador comprovades.
+## Components
+| Component | Responsabilitat i comunicació |
+| --- | --- |
+| App | Estat, filtre combinat, comptador, detall i DatePipe |
+| FiltresAnimalsComponent | FormsModule; emet aplicarFiltres amb text i categoria |
+| LlistaAnimalsComponent | Rep animals i seleccionatId; @for amb track animal.id; reemet seleccionar |
+| TargetaAnimalComponent | Rep animal i seleccionat; botó accessible que emet seleccionar |
+| EtiquetaEspecieComponent | Rep categoria obligatòria i mostra l’espècie |
 
-La branca ra1-setup conté els canvis de l’EAC1.
-Les branques main, ra2-components, ra3-serveis i ra4-navegacio
-conserven el projecte base.
+## Comportament i verificacions
+- Cerca per nom sense distingir majúscules i amb espais exteriors eliminats.
+- Text obligatori de 3 caràcters; categoria opcional. Ex.: `Luna` dona dos resultats;
+  amb espècie `Gat` queda `Luna Petita`. `zzzz` produeix estat buit.
+- Aplica queda deshabilitat si el formulari és invàlid. L’error apareix després de tocar el camp.
+- Restableix buida text i categoria, recupera els 10 animals i reinicia l’estat del formulari.
+- La selecció es conserva mentre el resultat sigui visible i es neteja si queda exclòs.
+- Plantilles amb @if/@else i @for; data d’arribada amb date:'dd/MM/yyyy'.
+- Enllaç de salt, labels, focus visible, aria-pressed a les targetes i avisos amb status/alert.
+- Dues columnes en escriptori; una columna a 700 px o menys. Targetes adaptables sense desbordament.
+- Proves automatitzades: filtre combinat, selecció i data, estat buit, validació i restabliment.
 
-## Enllaç del repositori
-
-https://github.com/YoeCode/ioc-angular-huellas-yoel-marti
-
-Branca de l’EAC1:
-https://github.com/YoeCode/ioc-angular-huellas-yoel-marti/tree/ra1-setup
+## Evidències i lliurament
+El document ODT inclou els exercicis 1–5, captures, URL de la branca i commit final.
+Comproveu el repositori públic i manteniu-lo accessible durant la revisió.

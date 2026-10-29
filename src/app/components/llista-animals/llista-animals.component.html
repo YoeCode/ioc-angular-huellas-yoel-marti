@@ -1,0 +1,5 @@
+<div class="llista">
+  @for (animal of animals; track animal.id) {
+    <app-targeta-animal [animal]="animal" [seleccionat]="animal.id === seleccionatId" (seleccionar)="seleccionar.emit($event)" />
+  }
+</div>
